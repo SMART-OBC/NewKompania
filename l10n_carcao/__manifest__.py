@@ -9,7 +9,7 @@
 {
     'name' : 'Curacao - Accounting',
     'author': ['SMART'],
-    'category': 'Accounting/Localizations/Account Charts',
+    'category': 'Accounting/Localizations/Account Charts ',
     'description':
 """
 Chart of Account for Curacao.
