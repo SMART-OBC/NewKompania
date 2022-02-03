@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+    <record id="cw_chart_template_infocus" model="account.chart.template">
+        <field name="name">Infocus - Account</field>
+        <field name="bank_account_code_prefix">1000</field>
+        <field name="cash_account_code_prefix">1001</field>
+        <field name="transfer_account_code_prefix">1004</field>
+        <field name="code_digits">7</field>
+        <field name="currency_id" ref="base.ANG"/>
+    </record>
+  </data>
+</odoo>
