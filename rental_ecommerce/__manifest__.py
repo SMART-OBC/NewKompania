@@ -3,7 +3,7 @@
 
 {
     'name': 'Rental System',
-    'version': '1.0.1',
+    'version': '1.0.0',
     'category': 'POS ',
     'sequence': 20,
     'summary': '',
