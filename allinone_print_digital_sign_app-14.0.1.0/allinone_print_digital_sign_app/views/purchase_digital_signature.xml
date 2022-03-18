@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <data>
+
+    <!-- configure signature in purchase setting -->
+    <record id="res_config_settings_view_purchase_form" model="ir.ui.view">
+      <field name="name">digital.signature.purchase</field>
+      <field name="model">res.config.settings</field>
+      <field name="inherit_id" ref="purchase.res_config_settings_view_form_purchase"/>
+      <field name="arch" type="xml">
+       <xpath expr="//div[@data-key='purchase']" position="inside">
+          <h2>Digital Signature</h2>
+              <div class="row mt16 o_settings_container">
+                  <div class="col-12 col-lg-6 o_setting_box">
+                     <div class="o_setting_left_pane">
+                      <div class="mt8">
+                        <field name="is_sign_purchase" class="o_light_label"/>
+                        </div>
+                    </div>
+                    <div class="o_setting_right_pane">
+                        <label for="is_sign_purchase" string="Allow Digital Signature for Purchase Order"/>
+                        <div class="text-muted">
+                            Allow Digital Signature in Purchase Order.
+                        </div>                        
+                    </div>
+                </div>
+              </div>
+               <div class="row mt16 o_settings_container" attrs="{'invisible': [('is_sign_purchase', '=', False)]}">
+                  <div class="col-12 col-lg-6 o_setting_box">
+                     <div class="o_setting_left_pane">
+                      <div class="mt8">
+                        <field name="is_confirm_sign_purchase" class="o_light_label"/>
+                        </div>
+                    </div>
+                    <div class="o_setting_right_pane">
+                        <label for="is_confirm_sign_purchase"/>
+                        <div class="text-muted">
+                            Digital Signature must be add before confirm purchase order.
+                        </div>                        
+                    </div>
+                </div>
+              </div>
+           
+        </xpath>
+      </field>
+    </record>
+
+    <!-- add signature in purchase -->
+    <record id="purchase_inherit_digital_signature" model="ir.ui.view">
+      <field name="name">purchase.form.digital.signature</field>
+      <field name="model">purchase.order</field>
+      <field name="inherit_id" ref="purchase.purchase_order_form"/>
+      <field name="arch" type="xml">
+        <xpath expr="/form/sheet" position="inside">
+          <group attrs="{'invisible': [('digital_sign_purchase_compute', '=', False)]}">
+            <field name="digital_sign_purchase_compute" invisible="1"/>
+              <label for="digital_signature" string="Signature" class="oe_edit_only" />
+                <h2>
+                  <field name="digital_signature" widget="signature"/>
+                </h2>
+          </group>
+        </xpath>
+      </field>
+    </record>
+
+  </data>
+</odoo>
