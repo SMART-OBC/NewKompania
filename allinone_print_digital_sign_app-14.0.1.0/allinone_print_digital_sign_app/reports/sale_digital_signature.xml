@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <!-- Signature print in sale report -->
+        <template id="sale_qweb_report" inherit_id="sale.report_saleorder_document">
+             <xpath expr="//div[hasclass('clearfix')]" position="after">
+                <t t-if="doc.digital_sign_sale_order_compute">
+                    <t t-if="doc.digital_signature">
+                        <div class="offset-8">
+                            <table class="table table-sm;page-break-inside: avoid;" >
+                                <tr>
+                                    <td>
+                                        <strong>Signature</strong>
+                                    </td>
+                                    <img t-att-src="'data:image/png;base64,%s' % to_text(doc.digital_signature)" style="max-height: 4cm; max-width: 8cm;"/>
+                                </tr>
+                            </table>
+                        </div>
+                    </t>
+               </t>
+            </xpath>
+        </template>
+
+    </data>
+</odoo>

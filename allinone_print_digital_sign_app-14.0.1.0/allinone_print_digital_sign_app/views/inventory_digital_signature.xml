@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <data>
+
+    <!-- configure  Signature in stock inventory-->
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+      <field name="name">digital.signature.inventory</field>
+      <field name="model">res.config.settings</field>
+      <field name="inherit_id" ref="stock.res_config_settings_view_form"/>
+      <field name="arch" type="xml">
+       <xpath expr="//div[@data-key='stock']" position="inside">
+          <h2>Digital Signature</h2>
+              <div class="row mt16 o_settings_container">
+                  <div class="col-12 col-lg-6 o_setting_box">
+                     <div class="o_setting_left_pane">
+                      <div class="mt8">
+                        <field name="is_sign_inventory" class="o_light_label"/>
+                        </div>
+                    </div>
+                    <div class="o_setting_right_pane">
+                        <label for="is_sign_inventory" string="Allow Digital Signature for Inventory"/>
+                        <div class="text-muted">
+                            Allow Digital Signature in Inventory Operations.
+                        </div>                        
+                    </div>
+                </div>
+                 <div class="col-12 col-lg-6 o_setting_box">
+                     <div class="o_setting_left_pane">
+                      
+                    </div>
+                    <div class="o_setting_right_pane">
+                        <label for="sign_applicable_inside"/>
+                        <div class="text-muted">
+                            Allow Digital Signature in delivery slip and inventory Operations or Both.
+                        </div>  
+                        <div class="mt8">
+                        <field name="sign_applicable_inside" class="o_light_label" widget="radio"/>
+                        </div>                      
+                    </div>
+                </div>
+                  <div class="col-12 col-lg-6 o_setting_box" attrs="{'invisible': [('is_sign_inventory', '=', False)]}">
+                     <div class="o_setting_left_pane">
+                      <div class="mt8">
+                        <field name="is_confirm_sign_inventory" class="o_light_label"/>
+                        </div>
+                    </div>
+                    <div class="o_setting_right_pane">
+                        <label for="is_confirm_sign_inventory"/>
+                        <div class="text-muted">
+                            Digital Signature must be add before validate inventory operation and delivery slip.
+                        </div>                        
+                    </div>
+                </div>              
+              </div>           
+        </xpath>
+      </field>
+    </record>
+
+    <!-- add signature in stock picking form -->
+    <record id="inventory_inherit_digital_signature" model="ir.ui.view">
+      <field name="name">inventory.form.digital.signature</field>
+      <field name="model">stock.picking</field>
+      <field name="inherit_id" ref="stock.view_picking_form"/>
+      <field name="arch" type="xml">
+        <xpath expr="/form/sheet" position="inside">
+          <group attrs="{'invisible': [('sign_inventory_compute', '=', False)]}">
+            <field name="sign_inventory_compute" invisible="1"/>
+              <label for="digital_signature" string="Signature" class="oe_edit_only" />
+              <h2>
+                <field name="digital_signature" widget="signature"/>
+              </h2>
+          </group>
+        </xpath>
+      </field>
+    </record>
+
+    </data>
+</odoo>
