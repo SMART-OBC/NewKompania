@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="booking_address_template" inherit_id="website_sale.address">
+        <xpath expr="//form[@class='checkout_autoformat']/div/div[6]" position="replace">
+            <div t-attf-class="form-group col-lg-12">
+                <label class="col-form-label" for="street">Street <span class="d-none d-md-inline"> and Number</span></label>
+                <input type="text" name="street" t-attf-class="form-control" t-att-value="'street' in checkout and checkout['street']" />
+            </div>
+        </xpath>
+         <xpath expr="//form[@class='checkout_autoformat']/div/t/div/div[@class='checkbox']" position="replace">
+
+         </xpath>
+
+    </template>
+
+</odoo>
